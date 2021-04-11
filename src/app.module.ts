@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { PostsModule } from './posts/posts.module';
 import { DatabaseModule } from './database/database.module';
 import * as Joi from '@hapi/joi';
+import { UsersModule } from './users/users.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @Module({
   imports: [
@@ -15,9 +17,13 @@ import * as Joi from '@hapi/joi';
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
         PORT: Joi.number(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRATION_TIME: Joi.string().required(),
       }),
     }),
-    DatabaseModule
+    DatabaseModule,
+    AuthenticationModule,
+    UsersModule
   ],
   controllers: [],
   providers: []

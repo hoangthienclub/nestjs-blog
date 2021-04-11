@@ -11,10 +11,7 @@ export default class PostsService {
   constructor(
     @InjectRepository(Post)
     private postsRepository: Repository<Post>
-  ) { }
-
-  private lastPostId = 0;
-  private posts: Post[] = [];
+  ) {}
 
   getAllPosts() {
     return this.postsRepository.find();
